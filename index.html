@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Merger</title>
+<script src="script.js"></script>
+<style>
+  body { text-align: center; margin-top: 50px; }
+  canvas { border: 1px solid black; }
+</style>
+</head>
+<body onload="init_merger()">
+<h2>Image Merger</h2>
+<p>Select two black and white images to merge:</p>
+<select name="merge" id="merge_type">
+    <option value="metallic_smooth">Metallic Smooth Map</option>
+    <option value="splat">Splatmap Packed</option>
+    <option value="splat_metallic">Splatmap Metallic</option>
+    <option value="splat_normal">Splatmap Normal</option>
+  </select>
+<br><br>
+<input type="file" id="image1" accept="image/*">
+<input type="file" id="image2" accept="image/*">
+<br><br>
+<input type="file" id="image3" accept="image/*" style="display: none;">
+<input type="file" id="image4" accept="image/*" style="display: none;">
+<br><br>
+<button onclick="mergeImages()">Merge Images</button>
+<br><br>
+<canvas id="canvas"></canvas>
+</body>
+</html>
