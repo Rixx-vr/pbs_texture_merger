@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Image Merger</title>
+<link rel="stylesheet" href="style.css">
 <script src="script.js"></script>
 <style>
   body { text-align: center; margin-top: 50px; }
@@ -20,14 +21,41 @@
     <option value="splat_normal">Splatmap Normal</option>
   </select>
 <br><br>
-<input type="file" id="image1" accept="image/*">
-<input type="file" id="image2" accept="image/*">
+<div class="drop-area" id="drop-area1">
+  <form class="my-form">
+    <p>Drag and drop an image here, or click to select an image (Field 1)</p>
+    <input type="file" id="image1" accept="image/*" onchange="handleFiles(this.files, this.parentElement.parentElement)">
+  </form>
+</div>
+<div class="preview" id="preview1"></div>
+
+<div class="drop-area" id="drop-area2">
+  <form class="my-form">
+    <p>Drag and drop an image here, or click to select an image (Field 2)</p>
+    <input type="file" id="image2" accept="image/*" onchange="handleFiles(this.files, this.parentElement.parentElement)">
+  </form>
+</div>
+<div class="preview" id="preview2"></div>
 <br><br>
-<input type="file" id="image3" accept="image/*" style="display: none;">
-<input type="file" id="image4" accept="image/*" style="display: none;">
+<div class="drop-area" id="drop-area3">
+  <form class="my-form">
+    <p>Drag and drop an image here, or click to select an image (Field 3)</p>
+    <input type="file" id="image3" accept="image/*" onchange="handleFiles(this.files, this.parentElement.parentElement)">
+  </form>
+</div>
+<div class="preview" id="preview3"></div>
+
+<div class="drop-area" id="drop-area4">
+  <form class="my-form">
+    <p>Drag and drop an image here, or click to select an image (Field 4)</p>
+    <input type="file" id="image4" accept="image/*" onchange="handleFiles(this.files, this.parentElement.parentElement)">
+  </form>
+</div>
+<div class="preview" id="preview4"></div>
 <br><br>
 <button onclick="mergeImages()">Merge Images</button>
 <br><br>
 <canvas id="canvas"></canvas>
+<script src="file_uploader.js"></script>
 </body>
 </html>

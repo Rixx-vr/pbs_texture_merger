@@ -44,8 +44,8 @@ function init_merger() {
 }
 
 function change_merge_type(e) {
-    const img3Input = document.getElementById('image3');
-    const img4Input = document.getElementById('image4');
+    const img3Input = document.getElementById('drop-area3');
+    const img4Input = document.getElementById('drop-area4');
     const merge_type = document.getElementById('merge_type');
     console.log(`change_merge_type`);
     merge_function = merge_type.value;
