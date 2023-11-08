@@ -1,25 +1,263 @@
+body {
+  background-color: #002b36; /* base03 */
+  color: #839496; /* base0 */
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s, color 0.3s;
+  text-align: center;
+}
+
+div {
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 20px;
+  transition: background-color 0.3s;
+}
+
+h1, h2, h3, h4, h5 {
+  color: #eee8d5; /* base2 */
+  border-bottom: 1px solid #586e75; /* base01 */
+  padding-bottom: 10px;
+  transition: color 0.3s, border-color 0.3s;
+}
+
 .drop-area {
-    border: 2px dashed #cccccc;
-    border-radius: 5px;
-    width: 300px;
-    height: 100px;
-    padding: 20px;
-    text-align: center;
-    margin: auto;
-    margin-top: 50px;
-  }
-  .drop-area:hover {
-    background-color: #f8f8f8;
-  }
-  input[type="file"] {
-    display: none;
-  }
-  .preview {
-    margin-top: 20px;
-    text-align: center;
-  }
-  img {
-    max-width: 100%;
+  border: 2px dashed #93a1a1; /* base1 */
+  border-radius: 5px;
+  width: 300px;
+  height: auto;
+  padding: 20px;
+  text-align: center;
+  margin: auto;
+  margin-top: 50px;
+  background-color: #073642; /* base02 */
+  color: #839496; /* base0 */
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.drop-area:hover {
+  background-color: #586e75; /* base01 */
+  border-color: #eee8d5; /* base2 */
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.preview {
+  margin-top: 20px;
+  text-align: center;
+  transition: margin-top 0.3s;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px; /* Rounded edges for images */
+  transition: max-width 0.3s, height 0.3s, border-radius 0.3s;
+}
+
+/* Additional styles for links or buttons if needed */
+a, button {
+  color: #2aa198; /* cyan */
+  background-color: #073642; /* base02 */
+  padding: 10px 15px;
+  text-decoration: none;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s, background-color 0.3s;
+}
+
+a:hover, button:hover {
+  background-color: #586e75; /* base01 */
+  color: #fdf6e3; /* base3 */
+}
+
+/* Style select elements */
+select {
+  background-color: #073642; /* base02 */
+  color: #839496; /* base0 */
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #586e75; /* base01 */
+  margin-bottom: 10px;
+  outline: none;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+select:hover {
+  border-color: #93a1a1; /* base1 */
+}
+
+select:focus {
+  border-color: #2aa198; /* cyan */
+}
+
+/* Style option elements */
+option {
+  background-color: #002b36; /* base03 */
+  color: #839496; /* base0 */
+}
+
+/* Style checkboxes and radio buttons */
+input[type="checkbox"], input[type="radio"] {
+  accent-color: #2aa198; /* cyan */
+  margin-right: 10px;
+}
+
+/* Style checkboxes */
+input[type="checkbox"] {
+  background-color: #073642; /* base02 */
+}
+
+/* Style radio buttons */
+input[type="radio"] {
+  background-color: #073642; /* base02 */
+}
+
+/* Style labels for better visibility */
+label {
+  color: #93a1a1; /* base1 */
+  margin-right: 10px;
+}
+
+/* Style input[type="file"] for file uploads */
+input[type="file"]::file-selector-button {
+  background-color: #073642; /* base02 */
+  color: #839496; /* base0 */
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #586e75; /* base01 */
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background-color: #586e75; /* base01 */
+  border-color: #93a1a1; /* base1 */
+}
+
+/* General input styles */
+input[type="text"], input[type="email"], input[type="password"], textarea {
+  background-color: #073642; /* base02 */
+  color: #839496; /* base0 */
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #586e75; /* base01 */
+  outline: none;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+input[type="text"]:hover, input[type="email"]:hover, input[type="password"]:hover, textarea:hover {
+  border-color: #93a1a1; /* base1 */
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, textarea:focus {
+  border-color: #2aa198; /* cyan */
+}
+
+/* Header styles */
+header {
+  background-color: #073642; /* base02 */
+  color: #93a1a1; /* base1 */
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid #586e75; /* base01 */
+  margin-left: 300px;
+}
+
+/* Footer styles */
+footer {
+  background-color: #073642; /* base02 */
+  color: #93a1a1; /* base1 */
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid #586e75; /* base01 */
+  bottom: 0;
+  width: 100%;
+  margin-left: 300px;
+}
+
+/* Navigation bar styles */
+nav {
+  background-color: #073642; /* base02 */
+  color: #839496; /* base0 */
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 300px;
+  height: 100%;
+  overflow: auto;
+  border-right: 1px solid #586e75; /* base01 */
+}
+
+nav a {
+  padding: 10px 15px;
+  display: block;
+  color: #93a1a1; /* base1 */
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+  text-align: left;
+}
+
+nav a:hover {
+  background-color: #586e75; /* base01 */
+  color: #eee8d5; /* base2 */
+}
+
+/* Responsive layout adjustments */
+@media (max-width: 768px) {
+  nav {
+    width: 100%;
     height: auto;
+    position: relative;
+    border-bottom: 1px solid #586e75; /* base01 */
+  }
+
+  header, footer {
+    text-align: left;
+  }
+
+  .container {
+    flex-direction: column; /* Stack the divs on top of each other */
   }
   
+  .side-by-side {
+    width: 100%; /* Each div takes full width of the container */
+    margin: 10px 0; /* Adjust margin for vertical layout */
+  }
+}
+
+.container {
+  display: flex; /* Use flexbox to lay out children side by side */
+  justify-content: space-between; /* This will space out the child divs */
+  padding: 20px;
+  background-color: #073642; /* Solarized Dark base02 color */
+  align-items: center;
+}
+
+.side-by-side {
+  width: calc(50% - 10px); /* Set width to half of the container minus margin */
+  color: #839496; /* Solarized Dark base0 color */
+  padding: 20px;
+  margin: 10px; /* Add some space between the divs */
+  box-sizing: border-box; /* Include padding and border in the width calculation */
+}
+
+main {
+  margin-left: calc(5% + 300px);
+  margin-right: calc(5%);
+  padding: 20px;
+  transition: margin-left 0.3s;
+}
+
+canvas {
+  padding-left: 0;
+  padding-right: 0;
+  max-width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  background-image: url('./images/checker.png');
+}

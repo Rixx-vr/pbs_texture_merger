@@ -3,59 +3,86 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Image Merger</title>
+<title>PBS Image Texture Combiner</title>
 <link rel="stylesheet" href="style.css">
 <script src="script.js"></script>
-<style>
-  body { text-align: center; margin-top: 50px; }
-  canvas { border: 1px solid black; }
-</style>
 </head>
 <body onload="init_merger()">
-<h2>Image Merger</h2>
-<p>Select two black and white images to merge:</p>
-<select name="merge" id="merge_type">
-    <option value="metallic_smooth">Metallic Smooth Map</option>
-    <option value="splat">Splatmap Packed</option>
-    <option value="splat_metallic">Splatmap Metallic</option>
-    <option value="splat_normal">Splatmap Normal</option>
-  </select>
-<br><br>
-<div class="drop-area" id="drop-area1">
-  <form class="my-form">
-    <p>Drag and drop an image here, or click to select an image (Field 1)</p>
-    <input type="file" id="image1" accept="image/*" onchange="handleFiles(this.files, this.parentElement.parentElement)">
-  </form>
-</div>
-<div class="preview" id="preview1"></div>
+  <header>
+    <h1>PBS Image Texture Combiner</h1>
+  </header>
 
-<div class="drop-area" id="drop-area2">
-  <form class="my-form">
-    <p>Drag and drop an image here, or click to select an image (Field 2)</p>
-    <input type="file" id="image2" accept="image/*" onchange="handleFiles(this.files, this.parentElement.parentElement)">
-  </form>
-</div>
-<div class="preview" id="preview2"></div>
-<br><br>
-<div class="drop-area" id="drop-area3">
-  <form class="my-form">
-    <p>Drag and drop an image here, or click to select an image (Field 3)</p>
-    <input type="file" id="image3" accept="image/*" onchange="handleFiles(this.files, this.parentElement.parentElement)">
-  </form>
-</div>
-<div class="preview" id="preview3"></div>
+  <nav>
+    <p>Foo</p>
+    <a href=""> <img src="./images/github-mark.svg" width="32" height="32"> View source code</a>
+    <a href="https://linktr.ee/rixx_vr">Rixx linktr.ee</a>
+  </nav>
 
-<div class="drop-area" id="drop-area4">
-  <form class="my-form">
-    <p>Drag and drop an image here, or click to select an image (Field 4)</p>
-    <input type="file" id="image4" accept="image/*" onchange="handleFiles(this.files, this.parentElement.parentElement)">
-  </form>
-</div>
-<div class="preview" id="preview4"></div>
-<br><br>
-<button onclick="mergeImages()">Merge Images</button>
-<br><br>
-<canvas id="canvas"></canvas>
+  <main>
+    <p>Drag and drop an image here, or click to select an image:</p>
+
+      <select name="merge" id="merge_type">
+          <option value="metallic_smooth">Metallic Smooth Map</option>
+          <option value="splat">Splatmap Packed</option>
+          <option value="splat_metallic">Splatmap Metallic</option>
+          <option value="splat_normal">Splatmap Normal</option>
+        </select>
+      <br><br>
+      <div class="container">
+      <div class="side-by-side">
+        <div class="drop-area" id="drop-area1">
+          <form class="my-form">
+            <p id="text-image1"></p>
+            <input type="file" id="image1" accept="image/*" onchange="handleFiles(this.files, this.parentElement.parentElement)">
+            <div class="preview" id="preview1"></div>
+          </form>
+        </div>
+      </div>
+
+      <div class="side-by-side">
+        <div class="drop-area" id="drop-area2">
+          <form class="my-form">
+            <p id="text-image2"></p>
+            <input type="file" id="image2" accept="image/*" onchange="handleFiles(this.files, this.parentElement.parentElement)">
+            <div class="preview" id="preview2"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <br><br>
+    <div class="container" id="drop-area-2-3">
+      <div class="side-by-side">
+        <div class="drop-area" id="drop-area3">
+          <form class="my-form">
+            <p id="text-image3"></p>
+            <input type="file" id="image3" accept="image/*" onchange="handleFiles(this.files, this.parentElement.parentElement)">
+            <div class="preview" id="preview3"></div>
+          </form>
+        </div>
+      </div>
+
+      <div class="side-by-side">
+        <div class="drop-area" id="drop-area4">
+          <form class="my-form">
+            <p id="text-image4"></p>
+            <input type="file" id="image4" accept="image/*" onchange="handleFiles(this.files, this.parentElement.parentElement)">
+            <div class="preview" id="preview4"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <br><br>
+    <button onclick="mergeImages()">Merge Images</button>
+    <br><br>
+    <div class="container" id="output-image">
+      <canvas id="canvas"></canvas>
+    </div>
+  </main>
+  <footer>
+    <p>Footer</p>
+  </footer>
 <script src="file_uploader.js"></script>
 </body>
 </html>

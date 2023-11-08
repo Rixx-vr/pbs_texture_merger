@@ -28,9 +28,11 @@ function uploadFile(file, dropArea) {
     let reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = function() {
-    let img = document.createElement('img');
-    img.src = reader.result;
-    dropArea.nextElementSibling.appendChild(img);
+        let img = document.createElement('img');
+        img.src = reader.result;
+
+        dropArea.querySelector('.preview').innerHTML = '';
+        dropArea.querySelector('.preview').appendChild(img);
     };
 }
 

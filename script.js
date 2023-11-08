@@ -1,19 +1,27 @@
 
+function invert(pixel) {
+    return 0xff - pixel
+}
+
+function average(pixel1, pixel2, pixel3) {
+    return (pixel1 + pixel2 + pixel3) / 3
+}
+
 function merge_metallic_smooth(imgData1, imgData2, imgCombined) {
     for (let i = 0; i < imgData1.data.length; i += 4) {
-        imgCombined.data[i] = (imgData1.data[i] + imgData1.data[i+1] + imgData1.data[i+2]) / 3;
+        imgCombined.data[i] = average(imgData1.data[i], imgData1.data[i+1], imgData1.data[i+2]);
         imgCombined.data[i + 1] = 0;
         imgCombined.data[i + 2] = 0;
-        imgCombined.data[i + 3] = 0xff - ((imgData2.data[i] + imgData2.data[i+1] + imgData2.data[i+2]) / 3);
+        imgCombined.data[i + 3] = invert(average(imgData2.data[i], imgData2.data[i+1], imgData2.data[i+2]));
     }
 }
 
 function merge_splat(imgData1, imgData2, imgData3, imgData4, imgCombined) {
     for (let i = 0; i < imgData1.data.length; i += 4) {
-        imgCombined.data[i] = (imgData1.data[i] + imgData1.data[i+1] + imgData1.data[i+2]) / 3;
-        imgCombined.data[i + 1] = (imgData2.data[i] + imgData2.data[i+1] + imgData2.data[i+2]) / 3;
-        imgCombined.data[i + 2] = (imgData3.data[i] + imgData3.data[i+1] + imgData3.data[i+2]) / 3;
-        imgCombined.data[i + 3] =  (imgData4.data[i] + imgData4.data[i+1] + imgData4.data[i+2]) / 3;
+        imgCombined.data[i] = average(imgData1.data[i], imgData1.data[i+1], imgData1.data[i+2]);
+        imgCombined.data[i + 1] = average(imgData2.data[i], imgData2.data[i+1], imgData2.data[i+2]);
+        imgCombined.data[i + 2] = average(imgData3.data[i], imgData3.data[i+1], imgData3.data[i+2]);
+        imgCombined.data[i + 3] =  average(imgData4.data[i], imgData4.data[i+1], imgData4.data[i+2]);
     }
 }
 
@@ -28,10 +36,10 @@ function merge_splat_normal(imgData1, imgData2, imgCombined) {
 
 function merge_splat_metallic(imgData1, imgData2, imgData3, imgData4, imgCombined) {
     for (let i = 0; i < imgData1.data.length; i += 4) {
-        imgCombined.data[i] = (imgData1.data[i] + imgData1.data[i+1] + imgData1.data[i+2]) / 3;
-        imgCombined.data[i + 1] = 0xff - ((imgData2.data[i] + imgData2.data[i+1] + imgData2.data[i+2]) / 3);
+        imgCombined.data[i] = average(imgData1.data[i], imgData1.data[i+1], imgData1.data[i+2]);
+        imgCombined.data[i + 1] = invert(average(imgData2.data[i], imgData2.data[i+1], imgData2.data[i+2]));
         imgCombined.data[i + 2] = (imgData3.data[i] + imgData3.data[i+1] + imgData3.data[i+2]) / 3;
-        imgCombined.data[i + 3] =  0xff - ((imgData4.data[i] + imgData4.data[i+1] + imgData4.data[i+2]) / 3);
+        imgCombined.data[i + 3] =  invert(average(imgData4.data[i], imgData4.data[i+1], imgData4.data[i+2]));
     }
 }
 
@@ -41,25 +49,45 @@ function init_merger() {
     console.log(`init_merger`);
     merge_function = merge_type.value;
     merge_type.addEventListener('change', change_merge_type);
+
+    change_merge_type(null);
 }
 
 function change_merge_type(e) {
-    const img3Input = document.getElementById('drop-area3');
-    const img4Input = document.getElementById('drop-area4');
+    const aux_images = document.getElementById('drop-area-2-3');
     const merge_type = document.getElementById('merge_type');
+    const text_image1 = document.getElementById('text-image1');
+    const text_image2 = document.getElementById('text-image2');
+    const text_image3 = document.getElementById('text-image3');
+    const text_image4 = document.getElementById('text-image4');
+
     console.log(`change_merge_type`);
     merge_function = merge_type.value;
 
     switch (merge_function) {
         case 'metallic_smooth':
+            text_image1.innerHTML = 'Metallic texture';
+            text_image2.innerHTML = 'Roughness texture';
+            aux_images.style.display = 'none';
+            break;
         case 'splat_normal':
-            img3Input.style.display = 'none';
-            img4Input.style.display = 'none';
+            aux_images.style.display = 'none';
+            text_image1.innerHTML = 'Normal texture 1';
+            text_image2.innerHTML = 'Normal texture 2';
             break;
         case 'splat_metallic':
+            aux_images.style.display = '';
+            text_image1.innerHTML = 'Metallic texture 1';
+            text_image2.innerHTML = 'Roughness texture 1';
+            text_image3.innerHTML = 'Metallic texture 2';
+            text_image4.innerHTML = 'Roughness texture 2';
+            break;
         case 'splat':
-            img3Input.style.display = '';
-            img4Input.style.display = '';
+            aux_images.style.display = '';
+            text_image1.innerHTML = 'Texture 1 (Albedo, Emisive, Height)';
+            text_image2.innerHTML = 'Texture 2 (Albedo, Emisive, Height)';
+            text_image3.innerHTML = 'Texture 3 (Albedo, Emisive, Height)';
+            text_image4.innerHTML = 'Texture 4 (Albedo, Emisive, Height)';
             break;
         default:
             console.log(`Sorry, ${merge_function}.is not an option.`);
