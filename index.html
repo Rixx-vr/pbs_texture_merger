@@ -13,9 +13,18 @@
   </header>
 
   <nav>
-    <p>Foo</p>
-    <a href=""> <img src="./images/github-mark.svg" width="32" height="32"> View source code</a>
-    <a href="https://linktr.ee/rixx_vr">Rixx linktr.ee</a>
+    <h3>About</h3>
+    <p>This project serves as a versatile tool for game developers and artists working with <a href="https://docs.unity3d.com/Manual/StandardShaderMaterialCharts.html">Unity's Standard Shader</a> particularly within the context of Resonite's Physically-Based Shading (PBS) Metallic Materials. It streamlines the process of merging various textures from different materials. The tool also facilitates the creation of composite textures suitable for use with Resonite's Color Splat Materials.</p>
+    <h3>Features</h3>
+    <ul>
+      <li>The output image has the same dimensions as the first input image.</li>
+      <li>All other images will be scaled to match the dimensions of the first input image.</li>
+      <li>When a color image is supplied for a grayscale image, the image will be automatically converted into grayscale.</li>
+      <li>The inputs will give hints about what kind of texture it is looking for, however, it may accept different ones.</li>
+  </ul>
+    <h3>links</h3>
+    <a href="" class="button"> <img src="./images/github-mark.svg" width="32" height="32"> View source code</a>
+    <a href="https://linktr.ee/rixx_vr" class="button">Rixx linktr.ee</a>
   </nav>
 
   <main>
@@ -28,9 +37,9 @@
 
       <select name="merge" id="merge_type">
           <option value="metallic_smooth">Metallic Smooth Map</option>
-          <option value="splat">Splatmap Packed</option>
-          <option value="splat_metallic">Splatmap Metallic</option>
-          <option value="splat_normal">Splatmap Normal</option>
+          <option value="splat">Color Splat Packed</option>
+          <option value="splat_metallic">Color Splat Metallic</option>
+          <option value="splat_normal">Color Splat Normal</option>
         </select>
       <br><br>
       <div class="container">
@@ -87,7 +96,7 @@
     <button id="download-output" onclick="download_output()">Download</button>
   </main>
   <footer>
-    <p>Footer</p>
+    <p>Made by Rixx | Released under the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT License</a>.</p>
   </footer>
 <script src="file_uploader.js"></script>
 </body>

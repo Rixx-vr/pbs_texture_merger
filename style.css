@@ -186,19 +186,30 @@ nav {
   position: fixed;
   left: 0;
   top: 0;
+  padding-left: 15px;
+  padding-right: 15px;
   width: 300px;
   height: 100%;
   overflow: auto;
   border-right: 1px solid #586e75; /* base01 */
 }
 
-nav a {
+nav ul li {
+  text-align: left;
+  margin-bottom: 25px;
+}
+
+.button{
   padding: 10px 15px;
   display: block;
   color: #93a1a1; /* base1 */
   text-decoration: none;
   transition: background-color 0.3s, color 0.3s;
-  text-align: left;
+  text-align: center;
+}
+
+nav a {
+  padding: 0px 0px;
 }
 
 nav a:hover {
