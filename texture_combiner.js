@@ -124,35 +124,32 @@ function mergeImages() {
     const img4 = new Image();
     let loadCounter = 0;
 
-    // Set up a function to run when the images are loaded
     function onImageLoad() {
       loadCounter++;
-      if (loadCounter >= 2) { // Make sure both images are loaded
+      if (loadCounter >= 2) {
 
-        // scale the canvas to the size of the images
         canvas.width = img1.width;
         canvas.height = img1.height;
 
         let imgCombined = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
-        // Draw the first image
         ctx.drawImage(img1, 0, 0);
         let imgData1 = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // Draw the second image
+
         ctx.drawImage(img2, 0, 0);
         let imgData2 = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         ctx.drawImage(img3, 0, 0);
         let imgData3 = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // Draw the second image
+
         ctx.drawImage(img4, 0, 0);
         let imgData4 = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         switch (merge_function) {
             case 'metallic_smooth':
@@ -175,7 +172,7 @@ function mergeImages() {
       }
     }
 
-    // Set the src to start loading the images
+
     img1.onload = onImageLoad;
     img2.onload = onImageLoad;
     img3.onload = onImageLoad;

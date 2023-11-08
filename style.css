@@ -1,6 +1,6 @@
 body {
-  background-color: #002b36; /* base03 */
-  color: #839496; /* base0 */
+  background-color: #002b36;
+  color: #839496;
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
@@ -16,14 +16,14 @@ div {
 }
 
 h1, h2, h3, h4, h5 {
-  color: #eee8d5; /* base2 */
-  border-bottom: 1px solid #586e75; /* base01 */
+  color: #eee8d5;
+  border-bottom: 1px solid #586e75;
   padding-bottom: 10px;
   transition: color 0.3s, border-color 0.3s;
 }
 
 .drop-area {
-  border: 2px dashed #93a1a1; /* base1 */
+  border: 2px dashed #93a1a1;
   border-radius: 5px;
   width: 300px;
   height: auto;
@@ -31,14 +31,14 @@ h1, h2, h3, h4, h5 {
   text-align: center;
   margin: auto;
   margin-top: 50px;
-  background-color: #073642; /* base02 */
-  color: #839496; /* base0 */
+  background-color: #073642;
+  color: #839496;
   transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
 .drop-area:hover {
-  background-color: #586e75; /* base01 */
-  border-color: #eee8d5; /* base2 */
+  background-color: #586e75;
+  border-color: #eee8d5;
 }
 
 input[type="file"] {
@@ -54,14 +54,14 @@ input[type="file"] {
 img {
   max-width: 100%;
   height: auto;
-  border-radius: 5px; /* Rounded edges for images */
+  border-radius: 5px;
   transition: max-width 0.3s, height 0.3s, border-radius 0.3s;
 }
 
-/* Additional styles for links or buttons if needed */
+
 a, button {
-  color: #2aa198; /* cyan */
-  background-color: #073642; /* base02 */
+  color: #2aa198;
+  background-color: #073642;
   padding: 10px 15px;
   text-decoration: none;
   border-radius: 5px;
@@ -71,118 +71,118 @@ a, button {
 }
 
 a:hover, button:hover {
-  background-color: #586e75; /* base01 */
-  color: #fdf6e3; /* base3 */
+  background-color: #586e75;
+  color: #fdf6e3;
 }
 
-/* Style select elements */
+
 select {
-  background-color: #073642; /* base02 */
-  color: #839496; /* base0 */
+  background-color: #073642;
+  color: #839496;
   padding: 10px;
   border-radius: 5px;
-  border: 1px solid #586e75; /* base01 */
+  border: 1px solid #586e75;
   margin-bottom: 10px;
   outline: none;
   transition: border-color 0.3s, background-color 0.3s;
 }
 
 select:hover {
-  border-color: #93a1a1; /* base1 */
+  border-color: #93a1a1;
 }
 
 select:focus {
-  border-color: #2aa198; /* cyan */
+  border-color: #2aa198;
 }
 
-/* Style option elements */
+
 option {
-  background-color: #002b36; /* base03 */
-  color: #839496; /* base0 */
+  background-color: #002b36;
+  color: #839496;
 }
 
-/* Style checkboxes and radio buttons */
+
 input[type="checkbox"], input[type="radio"] {
-  accent-color: #2aa198; /* cyan */
+  accent-color: #2aa198;
   margin-right: 10px;
 }
 
-/* Style checkboxes */
+
 input[type="checkbox"] {
-  background-color: #073642; /* base02 */
+  background-color: #073642;
 }
 
-/* Style radio buttons */
+
 input[type="radio"] {
-  background-color: #073642; /* base02 */
+  background-color: #073642;
 }
 
-/* Style labels for better visibility */
+
 label {
-  color: #93a1a1; /* base1 */
+  color: #93a1a1;
   margin-right: 10px;
 }
 
-/* Style input[type="file"] for file uploads */
+
 input[type="file"]::file-selector-button {
-  background-color: #073642; /* base02 */
-  color: #839496; /* base0 */
+  background-color: #073642;
+  color: #839496;
   padding: 10px;
   border-radius: 5px;
-  border: 1px solid #586e75; /* base01 */
+  border: 1px solid #586e75;
   transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
 input[type="file"]::file-selector-button:hover {
-  background-color: #586e75; /* base01 */
-  border-color: #93a1a1; /* base1 */
+  background-color: #586e75;
+  border-color: #93a1a1;
 }
 
-/* General input styles */
+
 input[type="text"], input[type="email"], input[type="password"], textarea {
-  background-color: #073642; /* base02 */
-  color: #839496; /* base0 */
+  background-color: #073642;
+  color: #839496;
   padding: 10px;
   border-radius: 5px;
-  border: 1px solid #586e75; /* base01 */
+  border: 1px solid #586e75;
   outline: none;
   transition: border-color 0.3s, background-color 0.3s;
 }
 
 input[type="text"]:hover, input[type="email"]:hover, input[type="password"]:hover, textarea:hover {
-  border-color: #93a1a1; /* base1 */
+  border-color: #93a1a1;
 }
 
 input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, textarea:focus {
-  border-color: #2aa198; /* cyan */
+  border-color: #2aa198;
 }
 
-/* Header styles */
+
 header {
-  background-color: #073642; /* base02 */
-  color: #93a1a1; /* base1 */
+  background-color: #073642;
+  color: #93a1a1;
   padding: 20px;
   text-align: center;
-  border-bottom: 1px solid #586e75; /* base01 */
-  margin-left: 300px;
+  border-bottom: 1px solid #586e75;
+  padding-left: 300px;
 }
 
-/* Footer styles */
+
 footer {
-  background-color: #073642; /* base02 */
-  color: #93a1a1; /* base1 */
+  background-color: #073642;
+  color: #93a1a1;
   padding: 20px;
   text-align: center;
-  border-top: 1px solid #586e75; /* base01 */
+  border-top: 1px solid #586e75;
   bottom: 0;
   width: 100%;
-  margin-left: 300px;
+  padding-left: 200px;
 }
 
-/* Navigation bar styles */
+
 nav {
-  background-color: #073642; /* base02 */
-  color: #839496; /* base0 */
+  background-color: #073642;
+  color: #839496;
   position: fixed;
   left: 0;
   top: 0;
@@ -191,7 +191,7 @@ nav {
   width: 300px;
   height: 100%;
   overflow: auto;
-  border-right: 1px solid #586e75; /* base01 */
+  border-right: 1px solid #586e75;
 }
 
 nav ul li {
@@ -202,28 +202,28 @@ nav ul li {
 .button{
   padding: 10px 15px;
   display: block;
-  color: #93a1a1; /* base1 */
+  color: #93a1a1;
   text-decoration: none;
   transition: background-color 0.3s, color 0.3s;
   text-align: center;
 }
 
-nav a {
+nav a , footer a{
   padding: 0px 0px;
 }
 
 nav a:hover {
-  background-color: #586e75; /* base01 */
-  color: #eee8d5; /* base2 */
+  background-color: #586e75;
+  color: #eee8d5;
 }
 
-/* Responsive layout adjustments */
-@media (max-width: 768px) {
+
+@media (max-width: 1200px) {
   nav {
     width: 100%;
     height: auto;
     position: relative;
-    border-bottom: 1px solid #586e75; /* base01 */
+    border-bottom: 1px solid #586e75;
   }
 
   header, footer {
@@ -231,29 +231,29 @@ nav a:hover {
   }
 
   .container {
-    flex-direction: column; /* Stack the divs on top of each other */
+    flex-direction: column;
   }
-  
+
   .side-by-side {
-    width: 100%; /* Each div takes full width of the container */
-    margin: 10px 0; /* Adjust margin for vertical layout */
+    width: 100%;
+    margin: 10px 0;
   }
 }
 
 .container {
-  display: flex; /* Use flexbox to lay out children side by side */
-  justify-content: space-between; /* This will space out the child divs */
+  display: flex;
+  justify-content: space-between;
   padding: 20px;
-  background-color: #073642; /* Solarized Dark base02 color */
+  background-color: #073642;
   align-items: center;
 }
 
 .side-by-side {
-  width: calc(50% - 10px); /* Set width to half of the container minus margin */
-  color: #839496; /* Solarized Dark base0 color */
+  width: calc(50% - 10px);
+  color: #839496;
   padding: 20px;
-  margin: 10px; /* Add some space between the divs */
-  box-sizing: border-box; /* Include padding and border in the width calculation */
+  margin: 10px;
+  box-sizing: border-box;
 }
 
 main {
