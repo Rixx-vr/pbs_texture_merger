@@ -61,7 +61,6 @@ function change_merge_type(e) {
     const text_image3 = document.getElementById('text-image3');
     const text_image4 = document.getElementById('text-image4');
 
-    console.log(`change_merge_type`);
     merge_function = merge_type.value;
 
     switch (merge_function) {
@@ -95,6 +94,21 @@ function change_merge_type(e) {
 
 }
 
+function download_output() {
+    const canvas = document.getElementById('canvas');
+    const merge_type = document.getElementById('merge_type');
+
+    var dataURL = canvas.toDataURL('image/png');
+    var downloadLink = document.createElement('a');
+
+    downloadLink.href = dataURL;
+    downloadLink.download = merge_type.value + '_combined.png';
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+}
+
+
 function mergeImages() {
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
@@ -103,13 +117,13 @@ function mergeImages() {
     const img3Input = document.getElementById('image3');
     const img4Input = document.getElementById('image4');
     merge_function = merge_type.value;
-    
+
     const img1 = new Image();
     const img2 = new Image();
     const img3 = new Image();
     const img4 = new Image();
     let loadCounter = 0;
-  
+
     // Set up a function to run when the images are loaded
     function onImageLoad() {
       loadCounter++;
@@ -125,7 +139,7 @@ function mergeImages() {
         ctx.drawImage(img1, 0, 0);
         let imgData1 = ctx.getImageData(0, 0, canvas.width, canvas.height);
         ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
-  
+
         // Draw the second image
         ctx.drawImage(img2, 0, 0);
         let imgData2 = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -149,28 +163,28 @@ function mergeImages() {
                 break;
             case 'splat_normal':
                 merge_splat_normal(imgData1, imgData2, imgCombined);
-                break;   
+                break;
             case 'splat_metallic':
                 merge_splat_metallic(imgData1, imgData2, imgData3, imgData4, imgCombined);
                 break;
             default:
                 console.log(`Sorry, ${merge_function}.is not an option.`);
         }
-  
+
         ctx.putImageData(imgCombined, 0, 0);
       }
     }
-  
+
     // Set the src to start loading the images
     img1.onload = onImageLoad;
     img2.onload = onImageLoad;
     img3.onload = onImageLoad;
     img4.onload = onImageLoad;
-  
+
     if (img1Input.files && img1Input.files[0]) {
       img1.src = URL.createObjectURL(img1Input.files[0]);
     }
-    
+
     if (img2Input.files && img2Input.files[0]) {
         img2.src = URL.createObjectURL(img2Input.files[0]);
     }

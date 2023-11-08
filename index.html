@@ -19,6 +19,11 @@
   </nav>
 
   <main>
+    <noscript>
+      <div style="background-color: #fdf6e3; color: #dc322f; padding: 20px; text-align: center;">
+          Warning: JavaScript is not enabled in your browser. This page will not function without JavaScript.
+      </div>
+    </noscript>
     <p>Drag and drop an image here, or click to select an image:</p>
 
       <select name="merge" id="merge_type">
@@ -79,6 +84,7 @@
     <div class="container" id="output-image">
       <canvas id="canvas"></canvas>
     </div>
+    <button id="download-output" onclick="download_output()">Download</button>
   </main>
   <footer>
     <p>Footer</p>
