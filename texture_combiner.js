@@ -43,6 +43,24 @@ function merge_splat_metallic(imgData1, imgData2, imgData3, imgData4, imgCombine
     }
 }
 
+function arm_to_metallic_smooth(imgData1, imgCombined) {
+    for (let i = 0; i < imgData1.data.length; i += 4) {
+        imgCombined.data[i] = imgData1.data[i+2];
+        imgCombined.data[i + 1] = 0;
+        imgCombined.data[i + 2] = 0;
+        imgCombined.data[i + 3] =  invert(imgData1.data[i+1]);
+    }
+}
+
+function arm_to_ao(imgData1, imgCombined) {
+    for (let i = 0; i < imgData1.data.length; i += 4) {
+        imgCombined.data[i] = imgData1.data[i];
+        imgCombined.data[i + 1] = imgData1.data[i];
+        imgCombined.data[i + 2] = imgData1.data[i];
+        imgCombined.data[i + 3] = 0xff;
+    }
+}
+
 let merge_function = 'metallic_smooth';
 
 function init_merger() {
@@ -55,6 +73,7 @@ function init_merger() {
 
 function change_merge_type(e) {
     const aux_images = document.getElementById('drop-area-2-3');
+    const second_image = document.getElementById('drop-area-2');
     const merge_type = document.getElementById('merge_type');
     const text_image1 = document.getElementById('text-image1');
     const text_image2 = document.getElementById('text-image2');
@@ -63,11 +82,13 @@ function change_merge_type(e) {
 
     merge_function = merge_type.value;
 
+    second_image.style.display = '';
+
     switch (merge_function) {
         case 'metallic_smooth':
+            aux_images.style.display = 'none';
             text_image1.innerHTML = 'Metallic texture';
             text_image2.innerHTML = 'Roughness texture';
-            aux_images.style.display = 'none';
             break;
         case 'splat_normal':
             aux_images.style.display = 'none';
@@ -88,6 +109,11 @@ function change_merge_type(e) {
             text_image3.innerHTML = 'Texture 3 (Albedo, Emisive, Height)';
             text_image4.innerHTML = 'Texture 4 (Albedo, Emisive, Height)';
             break;
+        case 'arm_metallic_smooth':
+        case 'arm_ao':
+            aux_images.style.display = 'none';
+            second_image.style.display = 'none';
+            text_image1.innerHTML = 'ARM Texture (Ambient Occlusion, Roughness, Metallic)';
         default:
             console.log(`Sorry, ${merge_function}.is not an option.`);
     }
@@ -124,19 +150,20 @@ function mergeImages() {
     const img4 = new Image();
     let loadCounter = 0;
 
-    function onImageLoad() {
-      loadCounter++;
-      if (loadCounter >= 2) {
 
+    function onImageLoad() {
+        let has_finished = false;
+        loadCounter++;
         canvas.width = img1.width;
         canvas.height = img1.height;
+
+        console.log(`loadCounter: ${loadCounter}`);
 
         let imgCombined = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
         ctx.drawImage(img1, 0, 0);
         let imgData1 = ctx.getImageData(0, 0, canvas.width, canvas.height);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
 
         ctx.drawImage(img2, 0, 0);
         let imgData2 = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -146,30 +173,56 @@ function mergeImages() {
         let imgData3 = ctx.getImageData(0, 0, canvas.width, canvas.height);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-
         ctx.drawImage(img4, 0, 0);
         let imgData4 = ctx.getImageData(0, 0, canvas.width, canvas.height);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         switch (merge_function) {
             case 'metallic_smooth':
-                merge_metallic_smooth(imgData1, imgData2, imgCombined);
+                if (loadCounter >= 2) {
+                    console.log(`metallic_smooth`);
+                    merge_metallic_smooth(imgData1, imgData2, imgCombined);
+                    has_finished = true;
+                }
                 break;
             case 'splat':
-                merge_splat(imgData1, imgData2, imgData3, imgData4, imgCombined);
+                if (loadCounter >= 1) {
+                    merge_splat(imgData1, imgData2, imgData3, imgData4, imgCombined);
+                    has_finished = true;
+                }
                 break;
             case 'splat_normal':
-                merge_splat_normal(imgData1, imgData2, imgCombined);
+                if (loadCounter >= 2) {
+                    merge_splat_normal(imgData1, imgData2, imgCombined);
+                    has_finished = true;
+                }
                 break;
             case 'splat_metallic':
-                merge_splat_metallic(imgData1, imgData2, imgData3, imgData4, imgCombined);
+                if (loadCounter >= 2) {
+                    merge_splat_metallic(imgData1, imgData2, imgData3, imgData4, imgCombined);
+                    has_finished = true;
+                }
+                break;
+            case 'arm_metallic_smooth':
+                if (loadCounter >= 1) {
+                    arm_to_metallic_smooth(imgData1, imgCombined);
+                    has_finished = true;
+                }
+                break;
+            case 'arm_ao':
+                if (loadCounter >= 1) {
+                    arm_to_ao(imgData1, imgCombined);
+                    has_finished = true;
+                }
                 break;
             default:
                 console.log(`Sorry, ${merge_function}.is not an option.`);
         }
 
-        ctx.putImageData(imgCombined, 0, 0);
-      }
+        if (has_finished) {
+            console.log(`has_finished: ${has_finished}`);
+            ctx.putImageData(imgCombined, 0, 0);
+        }
     }
 
 

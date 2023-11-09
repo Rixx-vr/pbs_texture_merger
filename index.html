@@ -21,6 +21,7 @@
       <li>All other images will be scaled to match the dimensions of the first input image.</li>
       <li>When a color image is supplied for a grayscale image, the image will be automatically converted into grayscale.</li>
       <li>The inputs will give hints about what kind of texture it is looking for, however, it may accept different ones.</li>
+      <li>Converts ARM (Ambient Occlusion, Roughness, Metallic) Textures to Ambient Occlusion or Combined Metallic Smoothness Textures.</li>
   </ul>
     <h3>links</h3>
     <a href="https://github.com/Rixx-vr/pbs_texture_merger" class="button"> <img src="./images/github-mark.svg" width="32" height="32"> View source code</a>
@@ -40,6 +41,8 @@
           <option value="splat">Color Splat Packed</option>
           <option value="splat_metallic">Color Splat Metallic</option>
           <option value="splat_normal">Color Splat Normal</option>
+          <option value="arm_metallic_smooth">ARM to Metallic Smooth Map</option>
+          <option value="arm_ao">ARM to Ambient Occlusion</option>
         </select>
       <br><br>
       <div class="container">
@@ -53,7 +56,7 @@
         </div>
       </div>
 
-      <div class="side-by-side">
+      <div class="side-by-side" id="drop-area-2">
         <div class="drop-area" id="drop-area2">
           <form class="my-form">
             <p id="text-image2"></p>
