@@ -18,6 +18,7 @@ function handleDrop(e) {
     let dt = e.dataTransfer;
     let files = dt.files;
     handleFiles(files, e.currentTarget);
+    e.currentTarget.querySelector('input').files = files;
 }
 
 function handleFiles(files, dropArea) {
@@ -29,6 +30,12 @@ function uploadFile(file, dropArea) {
     reader.readAsDataURL(file);
     reader.onloadend = function() {
         let img = document.createElement('img');
+        let input = dropArea.getElementsByTagName('input')
+
+        console.log(input[0]);
+        console.log(file);
+        console.log(input[0].src);
+
         img.src = reader.result;
 
         dropArea.querySelector('.preview').innerHTML = '';
