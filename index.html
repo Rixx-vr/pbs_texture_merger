@@ -102,10 +102,12 @@
     <br><br>
     <button onclick="mergeImages()">Merge Images</button>
     <br><br>
-    <div class="container" id="output-image">
-      <canvas id="canvas"></canvas>
+    <div id="result" style="display: none;">
+      <div class="container" id="output-image">
+        <canvas id="canvas"></canvas>
+      </div>
+      <button id="download-output" onclick="download_output()">Download</button>
     </div>
-    <button id="download-output" onclick="download_output()">Download</button>
   </main>
   <footer>
     <p>Made by Rixx | Released under the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT License</a>.</p>

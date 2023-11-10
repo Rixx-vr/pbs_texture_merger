@@ -190,6 +190,8 @@ function mergeImages() {
     const img2 = new Image();
     const img3 = new Image();
     const img4 = new Image();
+
+    const result = document.getElementById('result');
     let loadCounter = 0;
 
 
@@ -270,6 +272,8 @@ function mergeImages() {
         if (has_finished) {
             console.log(`has_finished: ${has_finished}`);
             ctx.putImageData(imgCombined, 0, 0);
+
+            result.style.display = '';
         }
     }
 
