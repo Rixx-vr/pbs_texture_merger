@@ -80,6 +80,20 @@ function change_merge_type(e) {
     const text_image3 = document.getElementById('text-image3');
     const text_image4 = document.getElementById('text-image4');
 
+    const image_metallic_smooth = document.getElementById('image_metallic_smooth');
+    const image_splat = document.getElementById('image_splat');
+    const image_splat_metallic = document.getElementById('image_splat_metallic');
+    const image_splat_normal = document.getElementById('image_splat_normal');
+    const image_arm_metallic_smooth = document.getElementById('image_arm_metallic_smooth');
+    const image_arm_ao = document.getElementById('image_arm_ao');
+
+    image_metallic_smooth.style.display = 'none';
+    image_splat.style.display = 'none';
+    image_splat_metallic.style.display = 'none';
+    image_splat_normal.style.display = 'none';
+    image_arm_metallic_smooth.style.display = 'none';
+    image_arm_ao.style.display = 'none';
+
     merge_function = merge_type.value;
 
     second_image.style.display = '';
@@ -87,16 +101,19 @@ function change_merge_type(e) {
     switch (merge_function) {
         case 'metallic_smooth':
             aux_images.style.display = 'none';
+            image_metallic_smooth.style.display = '';
             text_image1.innerHTML = 'Metallic texture';
             text_image2.innerHTML = 'Roughness texture';
             break;
         case 'splat_normal':
             aux_images.style.display = 'none';
+            image_splat_normal.style.display = '';
             text_image1.innerHTML = 'Normal texture 1';
             text_image2.innerHTML = 'Normal texture 2';
             break;
         case 'splat_metallic':
             aux_images.style.display = '';
+            image_splat_metallic.style.display = '';
             text_image1.innerHTML = 'Metallic texture 1';
             text_image2.innerHTML = 'Roughness texture 1';
             text_image3.innerHTML = 'Metallic texture 2';
@@ -104,15 +121,22 @@ function change_merge_type(e) {
             break;
         case 'splat':
             aux_images.style.display = '';
+            image_splat.style.display = '';
             text_image1.innerHTML = 'Texture 1 (Albedo, Emisive, Height)';
             text_image2.innerHTML = 'Texture 2 (Albedo, Emisive, Height)';
             text_image3.innerHTML = 'Texture 3 (Albedo, Emisive, Height)';
             text_image4.innerHTML = 'Texture 4 (Albedo, Emisive, Height)';
             break;
         case 'arm_metallic_smooth':
+            aux_images.style.display = 'none';
+            second_image.style.display = 'none';
+            image_arm_metallic_smooth.style.display = '';
+            text_image1.innerHTML = 'ARM Texture (Ambient Occlusion, Roughness, Metallic)';
+            break;
         case 'arm_ao':
             aux_images.style.display = 'none';
             second_image.style.display = 'none';
+            image_arm_ao.style.display = '';
             text_image1.innerHTML = 'ARM Texture (Ambient Occlusion, Roughness, Metallic)';
         default:
             console.log(`Sorry, ${merge_function}.is not an option.`);
