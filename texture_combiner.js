@@ -52,6 +52,15 @@ function arm_to_metallic_smooth(imgData1, imgCombined) {
     }
 }
 
+function arm_to_metallic_smooth_combined(imgData1, imgData2, imgCombined) {
+    for (let i = 0; i < imgData1.data.length; i += 4) {
+        imgCombined.data[i] = imgData1.data[i+2];
+        imgCombined.data[i + 1] = invert(imgData1.data[i+1]);;
+        imgCombined.data[i + 2] = imgData2.data[i+2];;
+        imgCombined.data[i + 3] =  invert(imgData2.data[i+1]);
+    }
+}
+
 function arm_to_ao(imgData1, imgCombined) {
     for (let i = 0; i < imgData1.data.length; i += 4) {
         imgCombined.data[i] = imgData1.data[i];
@@ -85,6 +94,7 @@ function change_merge_type(e) {
     const image_splat_metallic = document.getElementById('image_splat_metallic');
     const image_splat_normal = document.getElementById('image_splat_normal');
     const image_arm_metallic_smooth = document.getElementById('image_arm_metallic_smooth');
+    const image_arm_metallic_smooth_combined = document.getElementById('image_arm_metallic_smooth_combined');
     const image_arm_ao = document.getElementById('image_arm_ao');
 
     image_metallic_smooth.style.display = 'none';
@@ -92,6 +102,7 @@ function change_merge_type(e) {
     image_splat_metallic.style.display = 'none';
     image_splat_normal.style.display = 'none';
     image_arm_metallic_smooth.style.display = 'none';
+    image_arm_metallic_smooth_combined.style.display = 'none';
     image_arm_ao.style.display = 'none';
 
     merge_function = merge_type.value;
@@ -132,6 +143,13 @@ function change_merge_type(e) {
             second_image.style.display = 'none';
             image_arm_metallic_smooth.style.display = '';
             text_image1.innerHTML = 'ARM Texture (Ambient Occlusion, Roughness, Metallic)';
+            break;
+        case 'arm_metallic_smooth_combined':
+            aux_images.style.display = 'none';
+            second_image.style.display = '';
+            image_arm_metallic_smooth_combined.style.display = '';
+            text_image1.innerHTML = 'ARM Texture (Ambient Occlusion, Roughness, Metallic)';
+            text_image2.innerHTML = 'ARM Texture (Ambient Occlusion, Roughness, Metallic)';
             break;
         case 'arm_ao':
             aux_images.style.display = 'none';
@@ -230,6 +248,12 @@ function mergeImages() {
             case 'arm_metallic_smooth':
                 if (loadCounter >= 1) {
                     arm_to_metallic_smooth(imgData1, imgCombined);
+                    has_finished = true;
+                }
+                break;
+            case 'arm_metallic_smooth_combined':
+                if (loadCounter >= 1) {
+                    arm_to_metallic_smooth_combined(imgData1, imgData2, imgCombined);
                     has_finished = true;
                 }
                 break;

@@ -59,6 +59,18 @@ graph LR
 
 In the ARM to Metallic Smooth Map conversion, an ARM texture, which contains Ambient Occlusion, Roughness, and Metallic information, is split so that the metallic information (from the blue channel) is used for the output image's red channel, and the roughness information (from the green channel) is inverted and used for the alpha channel. This produces a texture suitable for the Metallic workflow in Unity where the smoothness information is stored in the alpha channel of the metallic map.
 
+## ARM to Metallic Smooth Map Combined
+```mermaid
+
+graph LR
+  A[ARM 1] -->|Blue| C[Metallic] -->|Red| I{Output Image}
+  A[ARM 1] -->|Green| D[Roughness] -->G[Invert] -->|Green| I{Output Image}
+  B[ARM 2] -->|Blue| E[Metallic] -->|Blue| I{Output Image}
+  B[ARM 2] -->|Green| F[Roughness] -->H[Invert] -->|Alpha| I{Output Image}
+```
+
+In this method, two ARM textures are combined into a single output image suitable for metallic workflows. From ARM 1, the metallic data is taken from the blue channel and mapped to the red channel of the output image, while the roughness data from the green channel is inverted and transferred to the output image's green channel. For ARM 2, the metallic data is again taken from the blue channel but this time is directed to the output image's blue channel. The roughness from ARM 2's green channel is inverted and assigned to the alpha channel of the output image. This technique creates a composite image where each color channel and the alpha channel are used to represent metallic and smoothness information from two different sources.
+
 ## ARM to Ambient Occlusion Map
 ```mermaid
 
