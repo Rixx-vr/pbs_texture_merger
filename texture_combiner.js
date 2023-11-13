@@ -184,6 +184,11 @@ function mergeImages() {
     const img2Input = document.getElementById('image2');
     const img3Input = document.getElementById('image3');
     const img4Input = document.getElementById('image4');
+
+    const value1Input = document.getElementById('value1');
+    const value2Input = document.getElementById('value2');
+    const value3Input = document.getElementById('value3');
+    const value4Input = document.getElementById('value4');
     merge_function = merge_type.value;
 
     const img1 = new Image();
@@ -197,28 +202,58 @@ function mergeImages() {
 
     function onImageLoad() {
         let has_finished = false;
+        let imgData1 = null;
+        let imgData2 = null;
+        let imgData3 = null;
+        let imgData4 = null;
+
         loadCounter++;
-        canvas.width = img1.width;
-        canvas.height = img1.height;
+
+        canvas.width = Math.max(img1.width, img2.width, img3.width, img4.width, 64);
+        canvas.height = Math.max(img1.height, img2.height, img3.height, img4.height, 64);
 
         console.log(`loadCounter: ${loadCounter}`);
 
         let imgCombined = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
-        ctx.drawImage(img1, 0, 0);
-        let imgData1 = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        if (img1.src != '') {
+            ctx.drawImage(img1, 0, 0);
+        } else {
+            let color = 0xff * value1Input.value / 100.0;
+            ctx.fillStyle = `rgb(${color}, ${color}, ${color})`;
+            ctx.fillRect(0,0,canvas.width, canvas.height);
+        }
+        imgData1 = ctx.getImageData(0, 0, canvas.width, canvas.height);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        ctx.drawImage(img2, 0, 0);
-        let imgData2 = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        if (img2.src != '') {
+            ctx.drawImage(img2, 0, 0);
+        } else {
+            let color = 0xff * value2Input.value / 100.0;
+            ctx.fillStyle = `rgb(${color}, ${color}, ${color})`;
+            ctx.fillRect(0,0,canvas.width, canvas.height);
+        }
+        imgData2 = ctx.getImageData(0, 0, canvas.width, canvas.height);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        ctx.drawImage(img3, 0, 0);
-        let imgData3 = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        if (img3.src != '') {
+            ctx.drawImage(img3, 0, 0);
+        } else {
+            let color = 0xff * value3Input.value / 100.0;
+            ctx.fillStyle = `rgb(${color}, ${color}, ${color})`;
+            ctx.fillRect(0,0,canvas.width, canvas.height);
+        }
+        imgData3 = ctx.getImageData(0, 0, canvas.width, canvas.height);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        ctx.drawImage(img4, 0, 0);
-        let imgData4 = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        if (img4.src != '') {
+            ctx.drawImage(img4, 0, 0);
+        } else {
+            let color = 0xff * value4Input.value / 100.0;
+            ctx.fillStyle = `rgb(${color}, ${color}, ${color})`;
+            ctx.fillRect(0,0,canvas.width, canvas.height);
+        }
+        imgData4 = ctx.getImageData(0, 0, canvas.width, canvas.height);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         switch (merge_function) {
@@ -285,17 +320,29 @@ function mergeImages() {
 
     if (img1Input.files && img1Input.files[0]) {
       img1.src = URL.createObjectURL(img1Input.files[0]);
+    } else {
+        loadCounter++;
     }
 
     if (img2Input.files && img2Input.files[0]) {
         img2.src = URL.createObjectURL(img2Input.files[0]);
+    } else {
+        loadCounter++;
     }
 
     if (img3Input.files && img3Input.files[0]) {
-    img3.src = URL.createObjectURL(img3Input.files[0]);
+        img3.src = URL.createObjectURL(img3Input.files[0]);
+    } else {
+        loadCounter++;
     }
 
     if (img4Input.files && img4Input.files[0]) {
-    img4.src = URL.createObjectURL(img4Input.files[0]);
+        img4.src = URL.createObjectURL(img4Input.files[0]);
+    } else {
+        loadCounter++;
+    }
+
+    if (loadCounter >= 4) {
+        onImageLoad();
     }
 }

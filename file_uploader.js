@@ -50,13 +50,13 @@ function uploadFile(file, dropArea) {
             slider.min = '0';
             slider.max = '100';
             slider.value = '0';
-            slider.id = 'value';
+            slider.id = 'value' + dropArea.id[dropArea.id.length - 1];
             img.remove();
             input[0].value = '';
             control[0].innerHTML = '';
             control[0].appendChild(slider);
         };
-    
+
         dropArea.querySelector('.preview').innerHTML = '';
         dropArea.querySelector('.preview').appendChild(img);
 
