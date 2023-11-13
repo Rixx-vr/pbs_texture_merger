@@ -272,3 +272,77 @@ canvas {
   display: block;
   background-image: url('./images/checker.png');
 }
+
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 300px;
+  height: 25px;
+  background: #073642;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  margin: 10px 0;
+}
+
+
+input[type="range"]:hover {
+  opacity: 1;
+}
+
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background: #93a1a1;
+  cursor: pointer;
+  border-radius: 50%;
+  border: none;
+}
+
+
+input[type="range"]::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: #93a1a1;
+  cursor: pointer;
+  border-radius: 50%;
+  border: none;
+}
+
+
+input[type="range"]::-ms-thumb {
+  width: 25px;
+  height: 25px;
+  background: #93a1a1;
+  cursor: pointer;
+  border-radius: 50%;
+  border: none;
+}
+
+
+input[type="range"]::-moz-range-track {
+  background: #586e75;
+  border: none;
+}
+
+
+input[type="range"]::-ms-track {
+  background: #586e75;
+  border: none;
+  color: transparent;
+}
+
+
+input[type="range"]::-ms-fill-lower {
+  background: #586e75;
+}
+
+
+input[type="range"]::-ms-fill-upper {
+  background: #586e75;
+}

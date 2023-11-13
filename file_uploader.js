@@ -31,6 +31,8 @@ function uploadFile(file, dropArea) {
     reader.onloadend = function() {
         let img = document.createElement('img');
         let input = dropArea.getElementsByTagName('input')
+        let parent = dropArea.parentNode;
+        let control = parent.getElementsByClassName('control');
 
         console.log(input[0]);
         console.log(file);
@@ -38,8 +40,28 @@ function uploadFile(file, dropArea) {
 
         img.src = reader.result;
 
+        let deleteBtn = document.createElement('button');
+        deleteBtn.innerText = 'Delete';
+        deleteBtn.classList.add('delete-btn');
+
+        deleteBtn.onclick = () => {
+            let slider = document.createElement('input');
+            slider.type = 'range';
+            slider.min = '0';
+            slider.max = '100';
+            slider.value = '0';
+            slider.id = 'value' + dropArea.id[dropArea.id.length - 1];
+            img.remove();
+            input[0].value = '';
+            control[0].innerHTML = '';
+            control[0].appendChild(slider);
+        };
+
         dropArea.querySelector('.preview').innerHTML = '';
         dropArea.querySelector('.preview').appendChild(img);
+
+        control[0].innerHTML = '';
+        control[0].appendChild(deleteBtn);
     };
 }
 
