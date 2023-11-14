@@ -17,10 +17,11 @@
     <p>This project serves as a versatile tool for game developers and artists working with <a href="https://docs.unity3d.com/Manual/StandardShaderMaterialCharts.html">Unity's Standard Shader</a> particularly within the context of Resonite's Physically-Based Shading (PBS) Metallic Materials. It streamlines the process of merging various textures from different materials. The tool also facilitates the creation of composite textures suitable for use with Resonite's Color Splat Materials.</p>
     <h3>Features</h3>
     <ul>
-      <li>The output image has the same dimensions as the first input image.</li>
-      <li>All other images will be scaled to match the dimensions of the first input image.</li>
+      <li>The output image has the same dimensions as the largest input image.</li>
+      <li>All other images will be scaled to match the dimensions of the largest input image.</li>
       <li>When a color image is supplied for a grayscale image, the image will be automatically converted into grayscale.</li>
       <li>The inputs will give hints about what kind of texture it is looking for, however, it may accept different ones.</li>
+      <li>If no image is supplied the value of the slider will be used instead.</li>
       <li>Converts ARM (Ambient Occlusion, Roughness, Metallic) Textures to Ambient Occlusion or Combined Metallic Smoothness Textures.</li>
   </ul>
     <h3>links</h3>
