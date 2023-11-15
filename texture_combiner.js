@@ -226,19 +226,19 @@ function mergeImages() {
 
         let imgCombined = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
-        for (let i = 0; i < img.length; i++) {
-            if (img[i].src != '') {
-                ctx.drawImage(img[i], 0, 0);
-            } else {
-                let color = 0xff * valueInput[i].value / 100.0;
-                ctx.fillStyle = `rgb(${color}, ${color}, ${color})`;
-                ctx.fillRect(0,0,canvas.width, canvas.height);
-            }
-            imgData[i] = ctx.getImageData(0, 0, canvas.width, canvas.height);
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-        }
-
         if(loadCounter >= algorithm.load_counter) {
+            for (let i = 0; i < img.length; i++) {
+                if (img[i].src != '') {
+                    ctx.drawImage(img[i], 0, 0);
+                } else {
+                    let color = 0xff * valueInput[i].value / 100.0;
+                    ctx.fillStyle = `rgb(${color}, ${color}, ${color})`;
+                    ctx.fillRect(0,0,canvas.width, canvas.height);
+                }
+                imgData[i] = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+
             algorithm.function(imgData[0], imgData[1], imgData[2], imgData[3], imgCombined);
             has_finished = true;
         }
