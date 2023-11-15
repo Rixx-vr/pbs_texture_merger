@@ -77,43 +77,50 @@ let merge_algorithm = {
         'function' : merge_metallic_smooth,
         'description' : ['Metallic texture', 'Roughness texture'],
         'image': 'image_metallic_smooth',
-        'load_counter': 2
+        'load_counter': 2,
+        'action': 'Merge Images'
     },
     'splat': {
         'function' : merge_splat,
         'description' : ['Texture 1 (Albedo, Emisive, Height)', 'Texture 2 (Albedo, Emisive, Height)', 'Texture 3 (Albedo, Emisive, Height)', 'Texture 4 (Albedo, Emisive, Height)'],
         'image': 'image_splat',
-        'load_counter': 1
+        'load_counter': 1,
+        'action': 'Merge Images'
     },
     'splat_normal': {
         'function' : merge_splat_normal,
         'description' : ['Normal texture 1', 'Normal texture 2'],
         'image': 'image_splat_normal',
-        'load_counter': 2
+        'load_counter': 2,
+        'action': 'Merge Images'
     },
     'splat_metallic': {
         'function' : merge_splat_metallic,
         'description' : ['Metallic texture 1', 'Roughness texture 1', 'Metallic texture 2', 'Roughness texture 2'],
         'image': 'image_splat_metallic',
-        'load_counter': 2
+        'load_counter': 2,
+        'action': 'Merge Images'
     },
     'arm_metallic_smooth': {
         'function' : arm_to_metallic_smooth,
         'description' : ['ARM Texture (Ambient Occlusion, Roughness, Metallic)'],
         'image': 'image_arm_metallic_smooth',
-        'load_counter': 1
+        'load_counter': 1,
+        'action': 'Convert to Metallic Smooth'
     },
     'arm_metallic_smooth_combined': {
         'function' : arm_to_metallic_smooth_combined,
         'description' : ['ARM Texture (Ambient Occlusion, Roughness, Metallic)', 'ARM Texture (Ambient Occlusion, Roughness, Metallic)'],
         'image': 'image_arm_metallic_smooth_combined',
-        'load_counter': 1
+        'load_counter': 1,
+        'action': 'Merge Images'
     },
     'arm_ao': {
         'function' : arm_to_ao,
         'description' : ['ARM Texture (Ambient Occlusion, Roughness, Metallic)'],
         'image': 'image_arm_ao',
-        'load_counter': 1
+        'load_counter': 1,
+        'action': 'Convert to Ambient Occlusion'
     }
 };
 
@@ -132,6 +139,8 @@ function change_merge_type(e) {
     const merge_type = document.getElementById('merge_type');
 
     merge_function = merge_type.value;
+
+    const run_button = document.getElementById('run');
 
     const aux_images = document.getElementById('drop-area-2-3');
     const second_image = document.getElementById('drop-area-2');
@@ -153,6 +162,8 @@ function change_merge_type(e) {
 
     aux_images.style.display = algorithm.description.length > 2 ? '' : 'none';
     second_image.style.display = algorithm.description.length > 1 ? '' : 'none';
+
+    run_button.innerHTML = algorithm.action;
 
     algorithm.image.style.display = '';
 
