@@ -229,7 +229,7 @@ function mergeImages() {
         if(loadCounter >= algorithm.load_counter) {
             for (let i = 0; i < img.length; i++) {
                 if (img[i].src != '') {
-                    ctx.drawImage(img[i], 0, 0);
+                    ctx.drawImage(img[i], 0, 0, canvas.width, canvas.height);
                 } else {
                     let color = 0xff * valueInput[i].value / 100.0;
                     ctx.fillStyle = `rgb(${color}, ${color}, ${color})`;
