@@ -16,6 +16,24 @@ function merge_metallic_smooth(imgData1, imgData2, imgData3, imgData4, imgCombin
     }
 }
 
+function merge_opacity(imgData1, imgData2, imgData3, imgData4, imgCombined) {
+    for (let i = 0; i < imgData1.data.length; i += 4) {
+        imgCombined.data[i] = imgData1.data[i];
+        imgCombined.data[i + 1] = imgData1.data[i+1];
+        imgCombined.data[i + 2] = imgData1.data[i+2];
+        imgCombined.data[i + 3] = average(imgData2.data[i], imgData2.data[i+1], imgData2.data[i+2]);
+    }
+}
+
+function merge_arm(imgData1, imgData2, imgData3, imgData4, imgCombined) {
+    for (let i = 0; i < imgData1.data.length; i += 4) {
+        imgCombined.data[i] = average(imgData1.data[i], imgData1.data[i+1], imgData1.data[i+2]);
+        imgCombined.data[i + 1] = average(imgData2.data[i], imgData2.data[i+1], imgData2.data[i+2]);
+        imgCombined.data[i + 2] = average(imgData3.data[i], imgData3.data[i+1], imgData3.data[i+2]);
+        imgCombined.data[i + 3] = 0xff;
+    }
+}
+
 function merge_splat(imgData1, imgData2, imgData3, imgData4, imgCombined) {
     for (let i = 0; i < imgData1.data.length; i += 4) {
         imgCombined.data[i] = average(imgData1.data[i], imgData1.data[i+1], imgData1.data[i+2]);
@@ -30,7 +48,7 @@ function merge_splat_normal(imgData1, imgData2, imgData3, imgData4, imgCombined)
         imgCombined.data[i] = imgData1.data[i];
         imgCombined.data[i + 1] = imgData1.data[i + 1];
         imgCombined.data[i + 2] = imgData2.data[i];
-        imgCombined.data[i + 3] =  imgData2.data[i + 1];
+        imgCombined.data[i + 3] = imgData2.data[i + 1];
     }
 }
 
@@ -49,6 +67,15 @@ function arm_to_metallic_smooth(imgData1, imgData2, imgData3, imgData4, imgCombi
         imgCombined.data[i + 1] = 0;
         imgCombined.data[i + 2] = 0;
         imgCombined.data[i + 3] =  invert(imgData1.data[i+1]);
+    }
+}
+
+function smooth_metallic_to_arm(imgData1, imgData2, imgData3, imgData4, imgCombined){
+    for (let i = 0; i < imgData1.data.length; i += 4) {
+        imgCombined.data[i] = invert(average(imgData2.data[i], imgData2.data[i+1], imgData2.data[i+2]));
+        imgCombined.data[i + 1] = invert(imgData1.data[i+1]);
+        imgCombined.data[i + 2] = imgData1.data[i+3];
+        imgCombined.data[i + 3] = 0xff;
     }
 }
 
@@ -121,6 +148,27 @@ let merge_algorithm = {
         'image': 'image_arm_ao',
         'load_counter': 1,
         'action': 'Convert to Ambient Occlusion'
+    },
+    'opacity': {
+        'function' : merge_opacity,
+        'description' : ['Texture 1 (Albedo, Emisive)', 'Texture 2 (Opacity)'],
+        'image': 'image_opacity',
+        'load_counter': 2,
+        'action': 'Add Opacity to Texture'
+    },
+    'arm': {
+        'function' : merge_arm,
+        'description' : ['Texture 1 (Ambient Occlusion)', 'Texture 2 (Roughness)', 'Texture 3 (Metallic)'],
+        'image': 'image_arm',
+        'load_counter': 3,
+        'action': 'Merge Images'
+    },
+    'smooth_metallic_to_arm': {
+        'function' : smooth_metallic_to_arm,
+        'description' : ['Metallic Smooth texture', 'Ambient Occlusion'],
+        'image': 'image_smooth_metallic_to_arm',
+        'load_counter': 2,
+        'action': 'Convert to ARM'
     }
 };
 
